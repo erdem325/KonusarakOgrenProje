@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Content\Bootstrap\**" />
+    <Compile Remove="Content\Exam\Css\**" />
+    <Compile Remove="Content\Other\Js\**" />
+    <Compile Remove="Migrations\**" />
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="Content\Bootstrap\**" />
+    <Content Remove="Content\Exam\Css\**" />
+    <Content Remove="Content\Other\Js\**" />
+    <Content Remove="Migrations\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="Content\Bootstrap\**" />
+    <EmbeddedResource Remove="Content\Exam\Css\**" />
+    <EmbeddedResource Remove="Content\Other\Js\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="Content\Bootstrap\**" />
+    <None Remove="Content\Exam\Css\**" />
+    <None Remove="Content\Other\Js\**" />
+    <None Remove="Migrations\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.9" />
+    <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
+  </ItemGroup>
+
+</Project>

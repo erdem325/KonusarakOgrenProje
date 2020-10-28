@@ -1,0 +1,107 @@
+﻿@using KonusarakOgrenExamProject.Models.ViewModels
+@model ExamModel
+
+@{
+    ViewData["Title"] = "Sınav Oluştur";
+}
+
+@section styles{
+    <style>
+       
+
+       
+        #btnCreateExam {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+
+    </style>
+}
+
+<div style="margin-top:50px;" class="addExam">
+
+
+    @if (ViewBag.ErrorMessage == null)
+    {
+        <form asp-action="Add" asp-controller="Exam" method="post">
+            <div class="form-group">
+                <label for="selectedText">Yazı</label>
+                <select class="form-control" asp-for="Question.Title">
+                    <option value="-1">Sınav için yazı seçiniz</option>
+                    @if (Model.TextViewModels != null)
+                    {
+                        foreach (var textModel in Model.TextViewModels)
+                        {
+                            <option data-id="@(textModel.Id)" value="@(textModel.Title)">@(textModel.Title)</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="form-group">  
+                <textarea class="form-control" readonly="readonly" asp-for="Question.Content" rows="6"></textarea>
+            </div>
+
+            
+
+            @for (int i = 0; i < 4; i++)
+            {
+                <div class="form-group question">
+                    <div class="form-group">
+                        
+                        <input class="form-control" asp-for="Question.ExamQuestions[i].Question" placeholder="Soru @(i+1)">
+                        <input type="hidden" asp-for="Question.ExamQuestions[i].QuestionNumber" value="@(i+1)" />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input asp-for="Question.ExamQuestions[i].AnswerA" placeholder="A) " class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input asp-for="Question.ExamQuestions[i].AnswerB" placeholder="B) " class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <input asp-for="Question.ExamQuestions[i].AnswerC" placeholder="C) " class="form-control">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input asp-for="Question.ExamQuestions[i].AnswerD" placeholder="D) " class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4 mx-auto">
+                            <select class="form-control" asp-for="Question.ExamQuestions[i].CorrectAnswer">
+                                <option value="-1">Doğru Cevap Seç</option>
+                                <option value="A">Cevap A</option>
+                                <option value="B">Cevap B</option>
+                                <option value="C">Cevap C</option>
+                                <option value="D">Cevap D</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <button id="btnCreateExam" type="submit" class="btn btn-primary btn-lg btn-block col-5 mx-auto">SINAV OLUŞTUR</button>
+        </form>
+    }
+    else
+    {
+        <div class="jumbotron">
+            <h1 class="display-4">Kayıt işlemi yapılamadı!</h1>
+            <p class="lead">@ViewBag.ErrorMessage</p>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <a class="btn btn-primary btn-lg" asp-action="Add" asp-controller="Exam" role="button">Tekrar Sınav Oluştur</a>
+        </div>
+    }
+
+
+</div>
+
+@section scripts{
+    <script src="~/Content/Exam/Js/ExamAdd.js"></script>
+}

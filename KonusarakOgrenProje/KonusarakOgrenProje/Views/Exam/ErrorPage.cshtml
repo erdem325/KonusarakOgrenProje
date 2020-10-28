@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Beklenmedik hata!";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="~/Content/Other/Css/ErrorPage.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="text-wrapper">
+        <div class="title" data-content="404">
+            @(ViewBag.Title != null ? ViewBag.Title : "404")
+        </div>
+
+        <div class="subtitle">
+            @(ViewBag.Content != null ? ViewBag.Content : "Sayfa Bulunamadı...")
+        </div>
+
+        <div class="buttons">
+            <a class="button" asp-action="List" asp-controller="Exam" >Sınav Listesi</a>
+        </div>
+    </div>
+</body>
+</html>
+

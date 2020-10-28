@@ -1,0 +1,27 @@
+﻿body {
+    background-color: #FAFAFA;
+}
+
+#loginTitle {
+    margin-bottom: 3.5vh;
+}
+
+#btnLogin {
+    margin-top: 2vh;
+
+}
+
+#baseLoginForm {
+    border: solid 1px black;
+    padding: 58px 45px;
+    margin-top: 15%
+}
+
+.field-validation-error {
+    color: red
+}
+
+.validation-summary-errors {
+    color: red
+}
+

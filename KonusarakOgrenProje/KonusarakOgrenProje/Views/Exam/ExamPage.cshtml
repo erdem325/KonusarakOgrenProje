@@ -1,0 +1,105 @@
+﻿@using KonusarakOgrenExamProject.Models
+@model Exam
+
+@{
+    ViewData["Title"] = "Sınav";
+}
+
+@section styles{
+
+    <style>
+        a {
+            cursor: pointer;
+        }
+
+        
+        .question a{
+            margin-top:1px;
+        }
+    </style>
+}
+
+<div style="margin-top: 20px;" class="exam mx-auto">
+    @if (Model != null)
+    {
+        
+        <input type="hidden" id="examId" value="@(Model.ExamId)" />
+        <h1 style="text-align:center">@Model.Title</h1>
+        <p style="text-align:center;margin-top:10px;">@Model.Content</p>
+
+        @for (int i = 0; i < Model.ExamQuestions.Count; i++)
+        {
+            <div class="row" style="margin-top:7vh;">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 question">
+                    <h4><b>@(Model.ExamQuestions[i].QuestionNumber))</b> @Model.ExamQuestions[i].Question</h4>
+                    <div id="listGroup@(Model.ExamQuestions[i].QuestionNumber)" class="list-group">
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="A"
+                           data-id="@(Model.ExamQuestions[i].QuestionNumber)">
+                            <b>A)</b> @Model.ExamQuestions[i].AnswerA
+                        </a>
+
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="B"
+                           data-id="@(Model.ExamQuestions[i].QuestionNumber)">
+                           <b>B)</b> @Model.ExamQuestions[i].AnswerB
+                        </a>
+
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="C"
+                           data-id="@(Model.ExamQuestions[i].QuestionNumber)">
+                           <b>C)</b> @Model.ExamQuestions[i].AnswerC
+                        </a>
+
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="D"
+                           data-id="@(Model.ExamQuestions[i].QuestionNumber)">
+                           <b>D)</b> @Model.ExamQuestions[i].AnswerD
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 question">
+                    <h4><b>@(Model.ExamQuestions[i + 1].QuestionNumber))</b> @Model.ExamQuestions[i + 1].Question</h4>
+                    <div id="listGroup@(Model.ExamQuestions[i+1].QuestionNumber)" class="list-group">
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="A"
+                           data-id="@(Model.ExamQuestions[i+1].QuestionNumber)">
+                            <b>A)</b> @Model.ExamQuestions[i + 1].AnswerA
+                        </a>
+
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="B"
+                           data-id="@(Model.ExamQuestions[i+1].QuestionNumber)">
+                            <b>B)</b> @Model.ExamQuestions[i + 1].AnswerB
+                        </a>
+
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="C"
+                           data-id="@(Model.ExamQuestions[i+1].QuestionNumber)">
+                            <b>C)</b> @Model.ExamQuestions[i + 1].AnswerC
+                        </a>
+
+                        <a class="list-group-item list-group-item-action"
+                           data-answer="D"
+                           data-id="@(Model.ExamQuestions[i+1].QuestionNumber)">
+                            <b>D)</b> @Model.ExamQuestions[i + 1].AnswerD
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" value="@(i++)" />
+        }
+
+        <div class="form-row">
+            <div class="form-group col-md-4 mx-auto">
+                <input type="button" class="btn btn-success col-12 btn-lg mx-auto" style="margin-top:20px; margin-bottom:20px;" id="btnExamControl" value="Sınavı Tamamla" />
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts{
+
+    <script src="~/Content/Exam/Js/ExamPage.js"></script>
+}

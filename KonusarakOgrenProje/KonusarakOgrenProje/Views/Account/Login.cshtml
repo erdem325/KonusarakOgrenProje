@@ -1,0 +1,54 @@
+﻿@using KonusarakOgrenExamProject.Models.ViewModels
+@model LoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Giriş yap</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link href="/Content/Login/Css/Login.css" rel="stylesheet" />
+    <link href="~/Content/Other/Css/LoadPage.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="loadpage" class="lds-dual-ring"></div>
+    <div class="container-fluid" style="">
+        <div id="baseLoginForm" class="col-xs-12 col-sm-9 col-ms-3 col-lg-3 mx-auto">
+            <h3 id="loginTitle" class="text-center">KULLANICI GİRİŞİ</h3>
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <div class="form-group col-12">
+                    <input asp-for="Username" class="form-control" placeholder="Kullanıcı Adı">
+                    <span asp-validation-for="Username"></span>
+                </div>
+
+                <div class="form-group col-12">
+                    <input asp-for="Password" type="password" placeholder="Şifre" class="form-control">
+                    <span asp-validation-for="Password"></span>
+                </div>
+                
+                <div class="form-group col-6">
+                    
+                        <button id="btnLogin" type="submit" class="btn btn-secondary btn-block">Giriş Yap</button>
+                   
+                </div>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    window.onbeforeunload = function (e) {
+        $('#loadpage').show();
+    };
+</script>
+

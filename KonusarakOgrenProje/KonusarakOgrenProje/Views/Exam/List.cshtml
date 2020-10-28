@@ -1,0 +1,81 @@
+﻿@using KonusarakOgrenExamProject.Models
+@model List<Exam>
+
+@{
+    ViewData["Title"] = "Sınavlar";
+}
+
+@section styles{
+
+    <style>
+        .examList {
+            margin-top: 20px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            white-space: nowrap;
+            line-height: 60px;
+        }
+    </style>
+}
+
+<div class="examList">
+
+    @if (Model != null)
+    {
+        if (Model.Count > 0)
+        {
+            <table class="table table-sm table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Sınav Id</th>
+                        <th scope="col">Başlık</th>
+                        <th scope="col">Tarih</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var exam in Model)
+                    {
+                        <tr style="cursor:pointer;">
+                            <th scope="row">@exam.ExamId</th>
+                            <td onclick="window.location.href='@Url.Action("ExamPage","Exam",new { id=exam.ExamId })'">@exam.Title</td>
+                            <td>@exam.CreatedDate</td>
+                            <td onclick="RemoveExam(@(exam.ExamId))">
+                                <b style="color:red">
+                                    Sil
+                                </b>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="jumbotron">
+                <h1 class="display-4">Kayıtlı sınav bulunamadı</h1>
+                <p class="lead">Yeni bir sınav oluşturmak için "Sınav Oluştur" butonuna basınız.</p>
+                <a class="btn btn-primary btn-lg" asp-action="Add" asp-controller="Exam" role="button">Sınav Oluştur</a>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="jumbotron">
+            <h1 class="display-4">Kayıtlı sınav bulunamadı</h1>
+            <p class="lead">Yeni bir sınav oluşturmak için "Sınav Oluştur" butonuna basınız.</p>
+            <a class="btn btn-primary btn-lg" asp-action="Add" asp-controller="Exam" role="button">Sınav Oluştur</a>
+        </div>
+    }
+</div>
+
+@section scripts{
+    <script src="~/Content/Exam/Js/ExamList.js"></script>
+}
+
